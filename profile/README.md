@@ -1,6 +1,6 @@
 # A home for you.
 
-[Imgur](https://imgur.com/y3hTCP8.png)
+![Imgur](https://imgur.com/y3hTCP8.png)
 
 ---
 
