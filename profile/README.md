@@ -6,6 +6,6 @@
 
 =======================
 <br/>
-personal data and productivity os
+personal library and productivity os
 <br/>
 copyright 2026
