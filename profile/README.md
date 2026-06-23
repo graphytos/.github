@@ -5,7 +5,7 @@
 ---
 
 
-#### graphytos‑cinema
+### graphytos‑cinema
 personal film and show libary for tracking what i watch, want to watch or don't want to watch
 
 **graphytos‑cinema-backend**
@@ -17,7 +17,7 @@ https://github.com/graphytos/graphytos-cinema-backend-ts
 https://github.com/graphytos/graphytos-cinema-frontend
 
 
-#### graphytos‑books
+### graphytos‑books
 
 
 =======================
