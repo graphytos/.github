@@ -16,7 +16,7 @@ https://github.com/graphytos/graphytos-cinema-backend-ts
 
 **graphytos‑cinema-api**
 <br/>
-api for interacting with my backend for my films and show library vault
+api client for interacting with my backend for my films and show library vault
 <br/>
 https://github.com/graphytos/graphytos-cinema-api-ts
 
