@@ -2,8 +2,8 @@
 
 The schema for the JSON file the library vault writes for each **film** entry.
 File lives at `<vault>/<tmdbId>.json`. The SQLite index (`<vault>/.index/library.sqlite`)
-holds everything else (descriptions, runtime, genres, MPAA, full credits, etc.)
-— this file is intentionally minimal.
+holds everything else (descriptions, genres, full credits, etc.) — this file
+is intentionally minimal.
 
 ## Fields
 
@@ -15,6 +15,8 @@ holds everything else (descriptions, runtime, genres, MPAA, full credits, etc.)
 
   "name": "Fight Club",
   "year": 1999,
+  "runtime": 139,
+  "mpaa": "R",
   "poster": "/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg",
   "backdrop": "/87hTDiay9Y3bcb11BaTzZbcMrt1.jpg",
   "cast": [
@@ -44,18 +46,26 @@ holds everything else (descriptions, runtime, genres, MPAA, full credits, etc.)
 | `kind`       | `"movie"`             | AUTO       | Always `"movie"` for film entries. |
 | `name`       | `string`              | AUTO       | Title. Auto-populated from TMDB, manually editable. |
 | `year`       | `integer`             | AUTO       | Release year. |
+| `runtime`    | `integer \| null`     | AUTO       | Runtime in minutes. `null` if TMDB doesn't provide one. |
+| `mpaa`       | `string \| null`      | AUTO       | MPAA rating (e.g. `"PG-13"`, `"R"`, `"G"`). `null` for unrated titles. |
 | `poster`     | `string`              | AUTO       | TMDB `poster_path`. Binary cached at `<vault>/.index/images/<tmdbId>__poster.jpg` and served as base64. |
 | `backdrop`   | `string`              | AUTO       | TMDB `backdrop_path`. Cached and served the same way as `poster`. |
 | `cast`       | `CastEntry[]`         | AUTO       | Top-billed cast (up to 20), sorted by `order`. Full cast + crew live in SQLite. |
 | `letterboxd` | `string`              | MANUAL     | Full URL to the title's Letterboxd page. |
 | `trakt`      | `string`              | MANUAL     | Full URL to the title's Trakt page. |
 | `imdb`       | `string`              | MANUAL     | Full URL to the title's IMDb page. |
-| `status`     | `"to-watch" \| "watched"` | MANUAL  | Viewing status. |
+| `status`     | `"to-watch" \| "to-not-watch" \| "watched"` | MANUAL  | Viewing status. |
 | `tags`       | `string[]`            | MANUAL     | User-defined tags (e.g. `["re-watch", "cinema"]`). |
 | `dates`      | `string[]` (ISO date) | MANUAL     | ISO `YYYY-MM-DD` appended every time the film is watched. |
 | `rating`     | `integer` (0–10)      | MANUAL     | Personal rating. `0` means unset. |
 | `notes`      | `string`              | MANUAL     | Free-form personal notes. |
 | `favorite`   | `boolean`             | MANUAL     | `true` = favorited, absent/`null` = not favorited. |
+
+### Status values
+
+- `to-watch` — on the list, not seen yet
+- `to-not-watch` — explicitly marked as something to skip / not interested in
+- `watched` — fully seen
 
 ## Nested types
 
@@ -74,9 +84,7 @@ holds everything else (descriptions, runtime, genres, MPAA, full credits, etc.)
 These are cached from TMDB into the SQLite index and joined at response time by the detail endpoint. Kept out of the JSON so files stay small and grep-friendly:
 
 - `description` — plot overview / synopsis
-- `runtime` — runtime in minutes
 - `genres` — genre names
-- `mpaa` — MPAA rating
 - Full cast + crew (rows in the `credits` table)
 - Person records (rows in the `people` table)
 - Raw `/movie/{id}` response blob (row in `entries_full`)
@@ -98,6 +106,8 @@ These are cached from TMDB into the SQLite index and joined at response time by 
   "kind": "movie",
   "name": "Fight Club",
   "year": 1999,
+  "runtime": 139,
+  "mpaa": "R",
   "poster": "/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg",
   "backdrop": "/87hTDiay9Y3bcb11BaTzZbcMrt1.jpg",
   "cast": [

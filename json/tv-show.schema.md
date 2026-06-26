@@ -2,8 +2,8 @@
 
 The schema for the JSON file the library vault writes for each **TV show** entry.
 File lives at `<vault>/<tmdbId>.json`. The SQLite index (`<vault>/.index/library.sqlite`)
-holds everything else (descriptions, runtime, genres, MPAA, episode metadata, full
-credits, etc.) — this file is intentionally minimal.
+holds everything else (descriptions, genres, episode metadata, full credits, etc.)
+— this file is intentionally minimal.
 
 The only structural difference from the film schema is the `seasonsWatch[]` array,
 which carries per-season and per-episode watch state so individual seasons or
@@ -19,6 +19,8 @@ episodes can be marked watched independently.
 
   "name": "Breaking Bad",
   "year": 2008,
+  "runtime": 49,
+  "mpaa": "TV-MA",
   "poster": "/ggFHVNu6YYI5L9pCfOacjizRGt.jpg",
   "backdrop": "/tsRy63Mu5cu022Q9DZ54ubdkdAW.jpg",
   "cast": [
@@ -144,8 +146,7 @@ Kept out of the JSON so files stay small and grep-friendly. Joined at response
 time by the detail endpoint:
 
 - `description` — show overview
-- `runtime` — typical episode runtime
-- `genres`, `mpaa`
+- `genres` — genre names
 - Per-season AUTO metadata: season `name`, `airDate`, `episodeCount`, `overview`, poster
 - Per-episode AUTO metadata: episode `name`, `airDate`, `overview`, `stillPath`, runtime
 - Full cast + crew (rows in `credits`)
@@ -169,6 +170,8 @@ time by the detail endpoint:
   "kind": "tv",
   "name": "Breaking Bad",
   "year": 2008,
+  "runtime": 49,
+  "mpaa": "TV-MA",
   "poster": "/ggFHVNu6YYI5L9pCfOacjizRGt.jpg",
   "backdrop": "/tsRy63Mu5cu022Q9DZ54ubdkdAW.jpg",
   "cast": [
