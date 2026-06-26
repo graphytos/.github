@@ -23,6 +23,10 @@ frontend for my films and show library vault
 <br/>
 https://github.com/graphytos/graphytos-cinema-frontend
 
+**graphytos‑cinema-swift**
+<br/>
+desktop app for film and show library vault
+<br/>
 
 
 
@@ -32,6 +36,15 @@ personal book libary for tracking what i read, want to read or don't want to rea
 **graphytos‑books-backend**
 
 **graphytos‑books-frontend**
+
+---
+
+**name**
+<br/>
+des
+<br/>
+repo
+
 
 =======================
 <br/>
