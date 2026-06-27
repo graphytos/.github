@@ -28,6 +28,17 @@ https://github.com/graphytos/graphytos-cinema-frontend
 desktop app for film and show library vault
 <br/>
 
+**graphytos‑cinema-dioxus**
+<br/>
+full stack film and show library managagment app in dioxus
+<br/>
+repo
+
+**graphytos‑cinema-svelte**
+<br/>
+full stack film and show library managagment app in svelte
+<br/>
+repo
 
 
 ### graphytos‑books
